@@ -232,8 +232,7 @@ bool GitPatch::PatchPath(const CString& path)
 
 int GitPatch::GetPatchResult(const CString& sPath, CString& sSavePath, CString& sRejectPath, CString &sBasePath) const
 {
-	auto it = std::find_if(m_filePaths.cbegin(), m_filePaths.cend(), [this, &sPath](auto& filePath) { return Strip(filePath.path).CompareNoCase(sPath) == 0; });
-	if (it != m_filePaths.cend())
+	if (auto it = std::find_if(m_filePaths.cbegin(), m_filePaths.cend(), [this, &sPath](auto& filePath) { return Strip(filePath.path).CompareNoCase(sPath) == 0; }); it != m_filePaths.cend())
 	{
 		sSavePath = (*it).resultPath;
 		sBasePath = (*it).basePath;
