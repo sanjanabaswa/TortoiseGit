@@ -92,6 +92,7 @@ int git_init(void)
 	_setmode(_fileno(stderr), _O_BINARY);
 
 	cleanup_chdir_notify();
+	fscache_flush();
 	reset_git_env();
 	// set HOME if not set already
 	gitsetenv("HOME", get_windows_home_directory(), 0);
